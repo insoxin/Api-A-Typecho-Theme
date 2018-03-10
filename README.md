@@ -1,13 +1,11 @@
 # Api-A-Typecho-Theme
 API主题是为了重推
-<!-- m -->[https://api.isoyu.com](https://api.isoyu.com)<!-- m -->
+[https://api.isoyu.com](https://api.isoyu.com)
 而产生的一款简洁css3大气时尚摄影杂志响应式typecho模板
-关键字：简洁 大气 时尚 摄影 杂志 magazine 响应式 手机 bootstrap 商务 精品 ft5 图片 相册 展示 博客 blog 小清新 css3 极简 旅游 旅行日志 导航 菜单 menu 模特 女性</span>
-<span style="font-style: italic">她的一大亮点就是调用了//api.isoyu.com/mm_images.php随机妹子生活照</span>
+关键字：简洁 大气 时尚 摄影 杂志 magazine 响应式 手机 bootstrap 商务 精品 ft5 图片 相册 展示 博客 blog 小清新 css3 极简 旅游 旅行日志 导航 菜单 menu 模特 女性
+她的一大亮点就是调用了//api.isoyu.com/mm_images.php随机妹子生活照
 ![图片](https://api.isoyu.com/mm_images.php)
 或者随机抱枕图
-<dl class="codebox"><dt>代码: [全选](#)</dt><dd>`&#91;img&#93;https://api.isoyu.com/bao_images.php&#91;/img&#93;`</dd></dl>
-![图片](https://api.isoyu.com/bao_images.php)
 和内置对接微信公众号API
 更多介绍[https://blog.isoyu.com/archives/api-a-typecho-theme.html](https://blog.isoyu.com/archives/api-a-typecho-theme.html)
 [https://blog.isoyu.com/archives/typechowxapi.html](https://blog.isoyu.com/archives/typechowxapi.html)
