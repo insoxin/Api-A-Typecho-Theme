@@ -27,7 +27,7 @@
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- Google Fonts -->
-	<link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic|Roboto:400,300,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic|Roboto:400,300,700' rel='stylesheet' type='text/css'>
 	<!-- Animate -->
 	<link rel="stylesheet" href="<?php $this->options->themeUrl('css/animate.css'); ?>">
 	<!-- Icomoon -->
@@ -36,6 +36,14 @@
 	<link rel="stylesheet" href="<?php $this->options->themeUrl('css/bootstrap.css'); ?>">
 
 	<link rel="stylesheet" href="<?php $this->options->themeUrl('css/style.css'); ?>">
+	
+	<!-- Comments -->
+	<link rel="stylesheet" href="<?php $this->options->themeUrl('css/comments.css'); ?>">
+	
+	<!-- Lazy Load CSS -->
+	<?php if($this->options->lazyLoad && $this->options->lazyLoad == '1'): ?>
+	<link rel="stylesheet" href="<?php $this->options->themeUrl('css/lazyload.css'); ?>">
+	<?php endif; ?>
 
 
 	<!-- Modernizr JS -->

@@ -1,0 +1,24 @@
+# 缓存文件
+/usr/uploads/cache/
+*.cache
+
+# 备份文件
+*.backup
+*.old
+*~
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# IDE 文件
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 日志文件
+*.log
+
+# 临时文件
+/tmp/
