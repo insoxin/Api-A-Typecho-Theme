@@ -39,6 +39,11 @@
 	
 	<!-- Comments -->
 	<link rel="stylesheet" href="<?php $this->options->themeUrl('css/comments.css'); ?>">
+	
+	<!-- Lazy Load CSS -->
+	<?php if($this->options->lazyLoad && $this->options->lazyLoad == '1'): ?>
+	<link rel="stylesheet" href="<?php $this->options->themeUrl('css/lazyload.css'); ?>">
+	<?php endif; ?>
 
 
 	<!-- Modernizr JS -->

@@ -14,6 +14,11 @@
 	<script src="<?php $this->options->themeUrl('js/jquery.waypoints.min.js'); ?>"></script>
 	<!-- Main JS -->
 	<script src="<?php $this->options->themeUrl('js/main.js'); ?>"></script>
+	
+	<!-- Lazy Load -->
+	<?php if($this->options->lazyLoad && $this->options->lazyLoad == '1'): ?>
+	<script src="<?php $this->options->themeUrl('js/lazyload.js'); ?>"></script>
+	<?php endif; ?>
 
 	</body>
 </html>
