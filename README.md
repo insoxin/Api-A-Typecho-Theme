@@ -4,7 +4,10 @@ API主题是为了重推
 而产生的一款简洁css3大气时尚摄影杂志响应式typecho模板
 下载后请重命名为api
 关键字：简洁 大气 时尚 摄影 杂志 magazine 响应式 手机 bootstrap 商务 精品 ft5 图片 相册 展示 博客 blog 小清新 css3 极简 旅游 旅行日志 导航 菜单 menu 模特 女性
-她的一大亮点就是调用了//api.isoyu.com/mm_images.php随机妹子生活照
+她的一大亮点就是调用了
+https://api.isoyu.com/mm_images.php
+随机妹子生活照
+
 ![图片](https://api.isoyu.com/mm_images.php)
 
 或者随机抱枕图
