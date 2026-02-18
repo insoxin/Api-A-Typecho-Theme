@@ -18,28 +18,39 @@ define('API_THEME_INC', API_THEME_DIR . '/inc');
 /**
  * 加载模块文件
  * @param string $module 模块名称
+ * @return bool 是否加载成功
  */
 function api_load_module($module) {
     $file = API_THEME_INC . '/' . $module . '.php';
     if (file_exists($file)) {
         require_once $file;
+        return true;
     }
+    return false;
 }
 
-// 按顺序加载所有模块
+// 按顺序加载所有模块（cache必须最先加载）
 $modules = array(
-    'cache',        // 缓存系统（必须最先加载）
+    'cache',        // 缓存系统（核心模块，其他模块依赖）
     'config',       // 主题配置
     'seo',          // SEO 功能
-    'statistics',   // 统计功能
-    'thumbnail',    // 缩略图功能
+    'statistics',   // 统计功能（依赖cache）
+    'thumbnail',    // 缩略图功能（依赖cache）
     'navigation',   // 导航功能
     'comments',     // 评论功能
     'content'       // 内容处理
 );
 
+$failed_modules = array();
 foreach ($modules as $module) {
-    api_load_module($module);
+    if (!api_load_module($module)) {
+        $failed_modules[] = $module;
+    }
+}
+
+// 如果有关键模块加载失败，记录错误
+if (!empty($failed_modules) && in_array('cache', $failed_modules)) {
+    error_log('API Theme: Failed to load critical modules: ' . implode(', ', $failed_modules));
 }
 
 /**

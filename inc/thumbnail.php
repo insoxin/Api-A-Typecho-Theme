@@ -106,9 +106,9 @@ function getThumbnailUrl($widget, $themeUrl, $options) {
     }
     
     // 优先级3：内容中的图片
-    $pattern = '/\<img.*?src\=\"(.*?)\"[^>]*>/i';
-    $patternMD = '/\!\[.*?\]\((http(s)?:\/\/.*?(jpg|png))/i';
-    $patternMDfoot = '/\[.*?\]:\s*(http(s)?:\/\/.*?(jpg|png))/i';
+    $pattern = '/\<img.*?src\=\"(https?:\/\/[^\"]+)\"[^>]*>/i';
+    $patternMD = '/\!\[.*?\]\((https?:\/\/[^\)]+\.(jpg|jpeg|png|gif|webp))/i';
+    $patternMDfoot = '/\[.*?\]:\s*(https?:\/\/[^\s]+\.(jpg|jpeg|png|gif|webp))/i';
     
     if (preg_match($pattern, $widget->content, $thumbUrl)) {
         return $thumbUrl[1] . $cai;
@@ -121,9 +121,15 @@ function getThumbnailUrl($widget, $themeUrl, $options) {
     // 优先级4：标签图片
     if ($widget->tags) {
         foreach ($widget->tags as $tag) {
-            $tagImagePath = './usr/themes/api/img/tag/' . $tag['slug'] . '.jpg';
+            // 清理并验证slug，防止目录遍历
+            $slug = preg_replace('/[^a-zA-Z0-9_-]/', '', $tag['slug']);
+            if (empty($slug)) {
+                continue;
+            }
+            
+            $tagImagePath = './usr/themes/api/img/tag/' . $slug . '.jpg';
             if (is_file($tagImagePath)) {
-                return $themeUrl . '/img/tag/' . $tag['slug'] . '.jpg';
+                return $themeUrl . '/img/tag/' . $slug . '.jpg';
             }
         }
     }
@@ -181,15 +187,17 @@ function applyCdnUrl($url, $options) {
  * @param string $src 图片URL
  * @param object $options 选项对象
  * @param bool $lazyLoad 是否懒加载
+ * @param string $alt 图片描述
  * @return string HTML 图片标签
  */
-function buildImgTag($src, $options, $lazyLoad = false) {
+function buildImgTag($src, $options, $lazyLoad = false, $alt = '') {
     $src = applyCdnUrl($src, $options);
+    $alt = !empty($alt) ? htmlspecialchars($alt, ENT_QUOTES, 'UTF-8') : '文章缩略图';
     
     if ($lazyLoad) {
         // 懒加载：使用 data-src 和占位符
-        return '<img class="lazyload" src="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1 1\'%3E%3C/svg%3E" data-src="' . $src . '" alt="thumbnail">';
+        return '<img class="lazyload" src="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1 1\'%3E%3C/svg%3E" data-src="' . $src . '" alt="' . $alt . '">';
     } else {
-        return '<img src="' . $src . '" alt="thumbnail">';
+        return '<img src="' . $src . '" alt="' . $alt . '">';
     }
 }

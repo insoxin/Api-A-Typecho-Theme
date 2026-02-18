@@ -39,9 +39,9 @@ function art_count($cid) {
         $count = mb_strlen($rs['text'], 'UTF-8');
     }
     
-    // 缓存结果（永久，因为文章内容不常变）
+    // 缓存结果（24小时，文章可能会更新）
     if ($enableCache && class_exists('API_Cache')) {
-        API_Cache::set($cache_key, $count, 0);
+        API_Cache::set($cache_key, $count, 86400);
     }
     
     echo $count;

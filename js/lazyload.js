@@ -45,9 +45,10 @@
      */
     function loadAllImages() {
         var images = document.querySelectorAll('img.lazyload');
-        images.forEach(function(img) {
-            loadImage(img);
-        });
+        // 兼容旧浏览器，使用传统循环
+        for (var i = 0; i < images.length; i++) {
+            loadImage(images[i]);
+        }
     }
     
     /**
@@ -55,9 +56,10 @@
      */
     function init() {
         var lazyImages = document.querySelectorAll('img.lazyload');
-        lazyImages.forEach(function(img) {
-            imageObserver.observe(img);
-        });
+        // 兼容旧浏览器，使用传统循环
+        for (var i = 0; i < lazyImages.length; i++) {
+            imageObserver.observe(lazyImages[i]);
+        }
     }
     
     // DOM 加载完成后初始化

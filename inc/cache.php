@@ -7,9 +7,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
  */
 class API_Cache {
     /**
-     * 缓存目录
+     * 缓存目录（相对路径）
      */
-    private static $cache_dir = '/usr/uploads/cache/';
+    private static $cache_dir = 'usr/uploads/cache/';
     
     /**
      * 默认缓存时间（秒）
@@ -50,7 +50,7 @@ class API_Cache {
         }
         
         // 检查是否过期
-        if (isset($cache['expire']) && $cache['expire'] > 0 && $cache['expire'] < time()) {
+        if (isset($cache['expire']) && $cache['expire'] > 0 && $cache['expire'] <= time()) {
             self::delete($key);
             return false;
         }

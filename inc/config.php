@@ -139,7 +139,8 @@ class API_Config_Validator {
         if (empty($qq)) {
             return true; // 允许为空
         }
-        return preg_match('/^[1-9][0-9]{4,10}$/', $qq);
+        // QQ号为5-12位数字，首位不为0
+        return preg_match('/^[1-9][0-9]{4,11}$/', $qq);
     }
     
     /**
@@ -167,9 +168,10 @@ class API_Config_Validator {
         if (!filter_var($url, FILTER_VALIDATE_URL)) {
             return false;
         }
-        // 验证是否以图片扩展名结尾或者是API地址
-        return preg_match('/\.(jpg|jpeg|png|gif|webp)$/i', $url) || 
-               strpos($url, 'api.') !== false;
+        // 验证是否以图片扩展名结尾
+        return preg_match('/\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i', $url) ||
+               // 或者是已知的图片API域名
+               preg_match('/^https?:\/\/(api|cdn|img)\./i', $url);
     }
     
     /**
